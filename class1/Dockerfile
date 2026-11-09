@@ -1,6 +1,11 @@
 # Class 1 — Build, Break, and Observe an Inference Server
 # GPU image (default). For CPU-only hosts use: docker compose --profile cpu up
-FROM pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime
+# this is amd64 only
+# FROM pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime
+FROM python:3.11-slim-bookworm
+
+RUN pip install --upgrade pip \
+    && pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cu130
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
